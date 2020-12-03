@@ -87,10 +87,25 @@ function movimientosDelJugador(direccion){
     }
 }
 
-/*function jugadorReset(){
+function rotacionDelJugador(){
+    const pos = jugador.pos.x;
+    rotacion(jugador, matriz);
+}
+
+function rotacion(matriz){
+    for(let y = 0; y<matriz.length; ++y){
+        for(let x = 0; x<y; ++x){
+            [matriz[x][y], matriz[y][x]] = [matriz[y][x], matriz[x][y]];
+        }
+    }
+
+    matriz.forEach(row => row.reverse());
+}
+
+function jugadorReset(){
     jugador.pos.x= 0;
     jugador.pos.y= 0;
-}*/
+}
 
 document.addEventListener("keydown", event =>{
     if(event.keyCode===40){
@@ -99,7 +114,9 @@ document.addEventListener("keydown", event =>{
          movimientosDelJugador(+1);
     } else if (event.keyCode===37){
          movimientosDelJugador(-1);
-    } 
+    } else if (event.keyCode===32){
+        rotacionDelJugador();
+    }
     /*else if (event.keyCode===32){ ||
         jugador.pos.y++;            ||  Boton para dejar caer la pieza 
         contenedorDeCaida = 19;     ||    
@@ -112,7 +129,7 @@ function caidaDelJugador() {
     if(limites(cuadricula, jugador)){
         jugador.pos.y--;
         unir(cuadricula, jugador);
-   //    jugadorReset();
+    jugadorReset();
    console.table(cuadricula);
     }
     contenedorDeCaida =0;
