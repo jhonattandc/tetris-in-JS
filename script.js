@@ -9,7 +9,7 @@ const jugador = {
         [0,0,0,],
         [1,1,1,],
         [0,1,0,]
-    }
+    } 
 }
 espacio.scale(20, 20);
 
